@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{
+    margin: 0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    background: #f5f2ee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+.card{
+
+    width: 70%;
+    height: 70%;
+    border: 1px solid #2F1F1B;
+    background: #fff;
+    color: #2F1F1B;
+    padding: 10px 20px;
+    margin: 30px;
+    border-radius: 10px;
+
+}
+
+.back{
+    display: flex;
+    gap: 10px;
+
+}
+.back button{
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+}
+.info-upgrade{
+    padding: 20px;
+}
+.info-upgrade p{
+    padding: 10px 0;
+}
+.info-upgrade textarea{
+    width:90%;
+}
+.update{
+    border-top: 1px solid #eee; padding-top: 10px;
+}
+.update button{
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    padding:5px 0;
+    border-radius: 5px;
+    border: none;
+    width: 15%;
+    cursor:pointer;
+    background: #2F1F1B;
+    color: #f5f2ee;
+}
+.update button:hover{
+    background: #876b5d ;
+    color: #f5f2ee;
+}
+.btn-browse{
+    border: 1px solid #2F1F1B;
+    padding: 0 5px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+}
+.card-section {
+  border-bottom: 1px solid #876b5d;
+  padding: 5px 5px;
+  margin:5px;
+}
+
+.card-section2 {
+  border-bottom: 1px solid #dccece;
+  padding: 5px 5px;
+  width: 90% ;
+  align-items: center;
+  margin:20px;
+}
+
+.address-row {
+  display: flex;
+  gap: 16px;
+}
+
+.update span {
+  font-size: 0.75rem;
+  padding: 10px;
+  color: #888;
+}
