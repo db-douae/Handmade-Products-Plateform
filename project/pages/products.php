@@ -3,7 +3,7 @@
     <head>
         <title>Products</title>
         <meta name="viewoport" content="width=device-width,initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../public/assets/css/products.css">
+        <link rel="stylesheet" type="text/css" href="/Handmade-Products-Plateform/project/public/assets/css/products.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css">
     </head>
 <body>
@@ -13,6 +13,7 @@
     <br>
 
     <header>
+        <?php include '../layouts/header.php'; ?>
     </header>
     
     <section class="after-header">
@@ -191,6 +192,10 @@
       </div>
    </div>
     </section>
+
+    <footer>
+        <?php include '../layouts/footer.php'; ?>
+    </footer>
 
 </body>
 

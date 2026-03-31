@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../../public/assets/css/interests.css">
+        <link rel="stylesheet" href="/Handmade-Products-Plateform/project/public/assets/css/interests.css">
         <title>Interests</title>
     </head>
     <body>

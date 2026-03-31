@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Log In</title>
-        <link rel="stylesheet" href="../../public/assets/css/login.css">
+        <link rel="stylesheet" href="/Handmade-Products-Plateform/project/public/assets/css/login.css">
     </head>
     <body>
         <div class="wrapper">

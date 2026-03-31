@@ -3,9 +3,14 @@
   <head>         
     <meta charset="UTF-8">
         <title>Settings</title>
-        <link rel="stylesheet" href="../../public/assets/css/upgrade.css">      
+        <link rel="stylesheet" href="/Handmade-Products-Plateform/project/public/assets/css/settings.css">      
   </head>
   <body>
+
+    <!--header>
+        <?php /*include '../../layouts/header.php';*/ ?>
+    </header-->
+
 <div class="all">
 <div class="avatar">
 <img id="avatarPreview" class="pfp"/>
@@ -83,6 +88,8 @@ document.getElementById('avatarInput').addEventListener('change', function() {
   fileName.textContent = file.name;
   avatarPreview.src = URL.createObjectURL(file);
 });
- </script>            
+ </script>  
+         
   </body>
+
 </html>

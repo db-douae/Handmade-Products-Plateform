@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>footer</title>
+        <link rel="stylesheet" href="/Handmade-Products-Plateform/project/public/assets/css/style.css">
     </head>
     <body>
         <footer>
@@ -10,11 +11,11 @@
                 <div class="footer-col">
                     <h4>Quick links</h4>
                     <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Artisans</a></li>
-                    <li><a href="#">Products</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#index.html">Home</a></li>
+                    <li><a href="#About">About</a></li>
+                    <li><a href="#Artisans">Artisans</a></li>
+                    <li><a href="#Product">Products</a></li>
+                    <li><a href="#Contact">Contact</a></li>
                     </ul>
                 </div>
              <div class="footer-col">

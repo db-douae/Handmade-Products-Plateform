@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../../public/assets/css/upgrade.css">
+        <link rel="stylesheet" href="/Handmade-Products-Plateform/project/public/assets/css/upgrade.css">
         <title>Upgrade</title>
     </head>
     <body>

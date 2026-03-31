@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My Shop</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/Handmade-Products-Plateform/project/public/assets/css/style.css">
 </head>
 <body>
 
