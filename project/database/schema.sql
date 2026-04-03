@@ -1,23 +1,25 @@
 CREATE TABLE users(
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     interests TEXT,
     role ENUM('buyer','artisan') NOT NULL DEFAULT 'buyer'
 );
 
 CREATE TABLE artisans(
-    id INT PRIMARY KEY,
+    id INT UNSIGNED PRIMARY KEY,
     description TEXT,
+    shop_id INT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (shop_id) REFERENCES artisan_shops(id)
 );
 
 CREATE TABLE notifications(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     message TEXT NOT NULL,
@@ -29,24 +31,25 @@ CREATE TABLE notifications(
 );
 
 CREATE TABLE delivery_info (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    client_number INT NOT NULL,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    client_number VARCHAR(255) NOT NULL,
     address VARCHAR(100) NOT NULL,
     wilaya VARCHAR(20) NOT NULL,
-    delivery_date DATE NOT NULL,
+    delivery_date DATE NOT NULL
 );
 
 CREATE TABLE normal_orders (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    buyer_id INT NOT NULL,
-    product_id INT NOT NULL,
-    delivery_id INT NOT NULL,
-    quantity INT DEFAULT 1,
-    status ENUM('pending','confirmed','delivered') NOT NULL,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    buyer_id INT UNSIGNED NOT NULL,
+    product_id INT UNSIGNED NOT NULL,
+    delivery_id INT UNSIGNED NOT NULL,
+    quantity INT UNSIGNED DEFAULT 1,
+    status ENUM('pending','confirmed','delivered') DEFAULT 'pending',
     FOREIGN KEY (buyer_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     FOREIGN KEY (delivery_id) REFERENCES delivery_info(id)
 );
+
 CREATE TABLE `artisan_shops` (
   `id`            INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `artisan_id`    INT UNSIGNED NOT NULL,
