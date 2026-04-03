@@ -38,6 +38,9 @@ CREATE TABLE delivery_info (
 
 CREATE TABLE normal_orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    buyer_id INT NOT NULL,
+    product_id INT NOT NULL,
+    delivery_id INT NOT NULL,
     quantity INT DEFAULT 1,
     status ENUM('pending','confirmed','delivered') NOT NULL,
     FOREIGN KEY (buyer_id) REFERENCES users(id) ON DELETE CASCADE,
