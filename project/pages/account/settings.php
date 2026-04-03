@@ -7,9 +7,9 @@
   </head>
   <body>
 
-    <!--header>
-        <?php /*include '../../layouts/header.php';*/ ?>
-    </header-->
+    <header>
+        <?php include '../../layouts/header.php'; ?>
+    </header>
 
 <div class="all">
 <div class="avatar">
