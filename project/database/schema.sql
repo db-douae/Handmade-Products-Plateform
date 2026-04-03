@@ -8,14 +8,6 @@ CREATE TABLE users(
     role ENUM('buyer','artisan') NOT NULL DEFAULT 'buyer'
 );
 
-CREATE TABLE artisans(
-    id INT UNSIGNED PRIMARY KEY,
-    description TEXT,
-    shop_id INT UNSIGNED NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (shop_id) REFERENCES artisan_shops(id)
-);
 CREATE TABLE artisan_shops (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   shop_name VARCHAR(255) NOT NULL,
@@ -33,6 +25,15 @@ CREATE TABLE products (
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (shop_id) REFERENCES artisan_shops(id) ON DELETE CASCADE
+);
+
+CREATE TABLE artisans(
+    id INT UNSIGNED PRIMARY KEY,
+    description TEXT,
+    shop_id INT UNSIGNED NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (shop_id) REFERENCES artisan_shops(id)
 );
 
 CREATE TABLE notifications(
