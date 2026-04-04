@@ -7,9 +7,7 @@
   </head>
   <body>
 
-    <header>
-        <?php include '../../layouts/header.php'; ?>
-    </header>
+        <?php //include '../../layouts/header.php'; ?>
 
 <div class="all">
 <div class="avatar">
@@ -69,7 +67,7 @@
 
 <div class="upgrade">
     <p>upgrade to <b>Artisan account</b>.</p>
-    <button>Upgrade your account  ></button>
+    <button onclick="window.location.href='upgrade.php';">Upgrade your account  ></button>
 </div>
 
 <div class="delete">

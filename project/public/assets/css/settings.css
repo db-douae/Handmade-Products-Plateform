@@ -56,8 +56,15 @@ input {
     background: #FFE7E5;
     border-radius:10px;
     text-align: left;
-
-
+}
+label{
+    color: #2F1F1B;
+}
+h2{
+    color: #2F1F1B;
+}
+p{
+    color: #2F1F1B;
 }
 .delete button{
     background: transparent;
