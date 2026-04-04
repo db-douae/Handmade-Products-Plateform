@@ -8,56 +8,47 @@
     </head>
 <body>
 
-    <br>
-    <h1></h1>
-    <br>
-
-    <header>
-        <?php include '../layouts/header.php'; ?>
-    </header>
-    
     <section class="after-header">
         <select>
-           <option>خيار 1</option>
-            <option><a href="login.html">خيار 2</a></option>
+           <option>New to Old</option>
+            <option>By Interests</option>
+            <option>Lower to Higher price</option>
         </select>
        <div class="search-container">
             <input type="text" placeholder="search...">
-            <img src="search-icon.png" class="search-icon">
+            <img src="/Handmade-Products-Plateform/project/public/assets/images/search-icon.png" class="search-icon">
         </div>
     </section>
 
-    <br>
 
     <section class="category">
 
         <input type="radio" name="tabs" id="tab1" checked class="tabs">
-       <label for="tab1">tab 1</label>
+       <label for="tab1">All</label>
 
         <input type="radio" name="tabs" id="tab2" class="tabs">
-        <label for="tab2">tab 1</label>
+        <label for="tab2">Wood</label>
 
         <input type="radio" name="tabs" id="tab3" class="tabs">
-        <label for="tab3">tab 1</label>
+        <label for="tab3">Pottery</label>
 
         <input type="radio" name="tabs" id="tab4"  class="tabs">
-        <label for="tab4">tab 1</label>
+        <label for="tab4">Jewelry</label>
 
         <input type="radio" name="tabs" id="tab5"  class="tabs">
-        <label for="tab5">tab 1</label>
+        <label for="tab5">Weaving</label>
 
         <input type="radio" name="tabs" id="tab6" class="tabs">
-        <label for="tab6">tab 1</label>
+        <label for="tab6">Candles</label>
         
         <input type="radio" name="tabs" id="tab7"  class="tabs">
-        <label for="tab7">tab 1</label>
+        <label for="tab7">Leather</label>
 
         <input type="radio" name="tabs" id="tab8" class="tabs">
-        <label for="tab8">tab 1</label>
+        <label for="tab8">Other</label>
 
     </section>
 
-    <br>
     <hr style="border: 1px solid #876b5d;">
 
     <section>
@@ -65,36 +56,36 @@
         <div class="box"><img src="img1.jpg" onclick="openModal(this)">
             <div class="product">
            <p style="font-size: 16px;">
-            <i style="color: #fff;">-</i> Hand-painted Ceramic<br>
-            <i style="color: #fff;">-</i><b style="color: #876b5d;">  $240</b></p>
+            Hand-painted Ceramic<br>
+            <b style="color: #876b5d;">  $240</b></p>
             </div>
         </div>
         <div class="box"><img src="img2.jpg">
         <div class="product">
            <p style="font-size: 16px;">
-            <i style="color: #f5f2ee;">-</i> Hand-painted Ceramic<br>
-            <i style="color: #f5f2ee;">-</i><b style="color: #876b5d;">  $240</b></p>
+            Hand-painted Ceramic<br>
+            <b style="color: #876b5d;">  $240</b></p>
             </div>
         </div>
         <div class="box"><img src="img3.jpg" onclick="openModal(this)">
         <div class="product">
            <p style="font-size: 16px;">
-            <i style="color: #f5f2ee;">-</i> Hand-painted Ceramic<br>
-            <i style="color: #f5f2ee;">-</i><b style="color: #876b5d;">  $240</b></p>
+             Hand-painted Ceramic<br>
+            <b style="color: #876b5d;">  $240</b></p>
             </div>
         </div>
         <div class="box"><img src="img4.png" onclick="openModal(this)">
         <div class="product">
            <p style="font-size: 16px;">
-            <i style="color: #fff;">-</i> Hand-painted Ceramic<br>
-            <i style="color: #fff;">-</i><b style="color: #876b5d;">  $240</b></p>
+             Hand-painted Ceramic<br>
+            <b style="color: #876b5d;">  $240</b></p>
             </div>
         </div>
         <div class="box"><img src="img5.png">
         <div class="product">
            <p style="font-size: 16px;">
-            <i style="color: #fff;">-</i> Hand-painted Ceramic<br>
-            <i style="color: #fff;">-</i><b style="color: #876b5d;">  $240</b></p>
+            Hand-painted Ceramic<br>
+            <b style="color: #876b5d;">  $240</b></p>
             </div>
         </div>
         <div class="box"><img src="img6.png">
@@ -194,7 +185,7 @@
     </section>
 
     <footer>
-        <?php include '../layouts/footer.php'; ?>
+        <?php /*include '../layouts/footer.php';*/ ?>
     </footer>
 
 </body>
