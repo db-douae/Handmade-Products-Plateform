@@ -166,19 +166,27 @@
         }
     </script>
 
-    <div class="overlay" id="overlay">
+ <div class="overlay" id="overlay">
       <div class="modal-content">
         <img id="modal-img">
         <div class="definition">
           <span onclick="closeModal()">✕</span>
            <br>
+           <div class="artisan">
+            <br>
+            <div class="pfp-artisan"></div>
+            <p>amira</p>
+           </div>
            <br>
           <h4 style="color: #2F1F1B;">Hand-painted Ceramic</h4>
-           <hr>
-           <br>
-           <p style="color: #876b5d; font-size: x-large;">You should Log in to buy this.</p>
-           <br>
-           <button href="login.html">Log In</button>
+          <p class="price">price : <b>$240</b></p>
+           <hr> 
+           <div class="buttons">
+           <button href="login.html">Visit the store</button>
+           <button href="login.html">Normal Order</button>
+           <button href="login.html">Customize Product</button>
+           <br></div>        
+           
         </div>
       </div>
    </div>

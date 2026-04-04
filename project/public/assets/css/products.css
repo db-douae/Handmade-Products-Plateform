@@ -158,6 +158,10 @@ input[type="radio"]:checked+label{
   display: flex;
    
 }
+.overlay:hover{
+    transform: translateY(-5px);
+    transition: transform 1s;
+}
 
 .overlay img {
 max-width: 50%;
@@ -175,28 +179,66 @@ max-width: 50%;
 .modal-content img {
 
   height: 500px;
+  border-radius: 1px;
   object-fit: cover;
+  justify-content: center;
 }
 
 .definition {
   height: 500px;
-  width: 200px;
+  width: 300px;
   background: #f5f2ee;
   border: 1px solid #2F1F1B;
   padding: 20px;
+
+}
+.definition hr{
+  color: #f5f2ee;
 }
 
+.buttons{
+  margin-top: 40px;
+}
 .definition button{
     font-size: 1rem;
-    margin-top: 1.8rem;
-    padding:10px 0;
-    border-radius: 20px;
+    margin-top: 0.5rem;
+    padding:5px 0;
+    border-radius: 5px;
     outline: none;
     border: none;
     width: 90%;
-    color: #fff;
+    color: #2F1F1B;
     cursor:pointer;
-    background: #2F1F1B;
+    border: 1px solid #2F1F1B;
+    background: transparent;
+
+}
+.definition .buttons button:hover{
+    background: #2F1F1B ;
+    color: #f5f2ee;
+}
+.definition p{
+  color: #876b5d;
+}
+.artisan{
+  display: flex;
+  margin-top: 20px;
+}
+.artisan p{
+  padding: 0px 10px;
+  color: #2F1F1B;
+
+}
+.pfp-artisan{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #2F1F1B;
+
+}
+.price{
+  font-size: large;
+  color: #876b5d;
 }
 span {
   cursor: pointer;

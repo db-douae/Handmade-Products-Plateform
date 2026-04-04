@@ -15,14 +15,14 @@
                 <p><b>Tell us about your interests</b> — pick what you like so we can show you the right products.</p>
             </div>
                 <div class="interests-grid">
-                <div class="interest"><p>Wood</p></div>
-                <div class="interest"><p>Jewelry</p></div>
-                <div class="interest"><p>Weaving</p></div>
-                <div class="interest"><p>Pottery</p></div>
-                <div class="interest"><p>Ceramics</p></div>
-                <div class="interest"><p>Embroidery</p></div>
-                <div class="interest"><p>Candles</p></div>
-                <div class="interest"><p>Leather</p></div>
+                <div class="interest"><p>Wood</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/1.png" class="icons"></div>
+                <div class="interest"><p>Jewelry</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/2.png" class="icons"></div>
+                <div class="interest"><p>Weaving</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/3.png" class="icons"></div>
+                <div class="interest"><p>Pottery</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/4.png" class="icons"></div>
+                <div class="interest"><p>Ceramics</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/5.png" class="icons"></div>
+                <div class="interest"><p>Embroidery</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/6.png" class="icons"></div>
+                <div class="interest"><p>Candles</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/7.png" class="icons"></div>
+                <div class="interest"><p>Else</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/8.png" class="icons"></div>
             </div>
 
             <p class="counter">I choose <span id="count">0</span> </p>
