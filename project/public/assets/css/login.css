@@ -13,14 +13,24 @@ body{
     align-items: center;
     min-height: 100vh;
 }
+
 .wrapper{
-    width:330px;
+    width:400px;
     padding: 2rem 1rem;
     margin: 50px auto;
     background-color: #f5f2ee;
     border-radius:10px;
     text-align: center;
     /*box-shadow: ;*/
+}
+
+.content label {
+    display: block;
+    text-align: left;
+    font-size: 0.85rem;
+    margin-left: 25px;
+    margin-bottom: 2px;
+    color: #2F1F1B;
 }
 h1{
     font-size: 2rem;

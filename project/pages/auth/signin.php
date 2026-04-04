@@ -1,25 +1,32 @@
-<html lan="ar">
+
+<httml lan="ar">
     <head>
         <meta charset="UTF-8">
-        <title>Log In</title>
+        <title>Sign In</title>
         <link rel="stylesheet" href="/Handmade-Products-Plateform/project/public/assets/css/login.css">
     </head>
     <body>
         <div class="wrapper">
             <h1>Sign Up</h1>
-            <br>
+            
             <form action="#">
-                
+                <div class="content">
+                <label>First Name:</label>
                 <input type="text" placeholder="First Name">
-                <input type="text" placeholder="Last Name">
+                 <label>Last Name:</label>
+                <input type="text" placeholder="Last Name"></div>
                 <br>
-                <h1> </h1>
+                <div class="content">
+                 <label>Email:</label>
                 <input type="email" placeholder="Email">
-                <input type="email" placeholder="Re-Email">
+                 <label>Rewrite the email:</label>
+                <input type="email" placeholder="Re-Email"></div>
                 <br>
-                <h1> </h1>
+                <div class="content">
+                 <label>password:</label>
                 <input type="password" placeholder="Password">
-                <input type="password" placeholder="Re-Password">
+                 <label>rewrite the password:</label>
+                <input type="password" placeholder="Re-Password"></div>
 
             </form>
             <div class="terms">
@@ -29,7 +36,7 @@
             </div>
             <button>Sig Up</button>
             <div class="member">
-                Already a member? <a href="login.html">Login here</a>
+                Already a member? <a href="login.php">Login here</a>
 
             </div>
         </div>

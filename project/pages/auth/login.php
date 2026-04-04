@@ -7,11 +7,13 @@
     <body>
         <div class="wrapper">
             <h1>Log In</h1>
-            
-            
             <form action="#">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <div class="content">
+                <label>email: </label>
+                <input type="email" placeholder="Email"></div>
+                <div class="content">
+                <label>password:</label>
+                <input type="password" placeholder="Password"></div>
 
             </form>
             <button>Log In</button>
@@ -19,7 +21,7 @@
             <h1></h1>
             <div class="member">
                 
-                Not a member? <a href="signin.html">Register Now</a>
+                Not a member? <a href="signin.php">Register Now</a>
 
             </div>
         </div>
