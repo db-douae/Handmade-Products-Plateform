@@ -8,17 +8,15 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css">
     </head>
     <body>
-      <header>
-        <?php include '../layouts/header.php'; ?>
-    </header>
+
         <section class="after-header">
         <select>
-           <option>خيار 1</option>
-            <option><a href="login.html">خيار 2</a></option>
+           <option>New to old</option>
+           <option>By Interests</option>
         </select>
        <div class="search-container">
             <input type="text" placeholder="search...">
-            <img src="search-icon.png" class="search-icon">
+            <img src="/Handmade-Products-Plateform/project/public/assets/images/search-icon.png" class="search-icon">
         </div>
     </section>
     
@@ -91,7 +89,7 @@
 });
 </script>
 <footer>
-        <?php include '../layouts/footer.php'; ?>
+
     </footer>
 
     </html>

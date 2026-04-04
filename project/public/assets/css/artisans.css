@@ -28,7 +28,7 @@ section {
 
 /* ===== Select ===== */
 select {
-  width: 100px;
+  width: 150px;
   padding: 3px 20px;
   border: 2px solid #2F1F1B;
   background-color: #f5f2ee;
@@ -170,6 +170,9 @@ input[type="radio"]:checked + label {
   color: #fff;
   cursor: pointer;
   background: #2F1F1B;
+}
+button:hover{
+  background: #876b5d;
 }
 
 span {
