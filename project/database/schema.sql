@@ -70,14 +70,13 @@ CREATE TABLE normal_orders (
     FOREIGN KEY (delivery_id) REFERENCES delivery_info(id)
 );
 
-CREATE TABLE customize_products (
-    id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    product_id INT UNSIGNED NOT NULL UNIQUE,
-    color      VARCHAR(100),
-    size       VARCHAR(100),
-    text       TEXT,
-    status     VARCHAR(100) NOT NULL DEFAULT 'available',
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+sqlCREATE TABLE customize_orders (
+    id                   INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id              INT UNSIGNED NOT NULL,
+    customize_product_id INT UNSIGNED NOT NULL,
+    delivery_id          INT UNSIGNED NOT NULL,  -- ← ناقصة!
+    ...
+    FOREIGN KEY (delivery_id) REFERENCES delivery_info(id)  -- ← ناقصة!
 );
   
 CREATE TABLE customize_orders (
