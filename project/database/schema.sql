@@ -69,7 +69,15 @@ CREATE TABLE normal_orders (
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     FOREIGN KEY (delivery_id) REFERENCES delivery_info(id)
 );
-
+CREATE TABLE customize_products (
+    id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    product_id INT UNSIGNED NOT NULL UNIQUE,
+    color      VARCHAR(100),
+    size       VARCHAR(100),
+    text       TEXT,
+    status     VARCHAR(100) NOT NULL DEFAULT 'available',
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
 sqlCREATE TABLE customize_orders (
     id                   INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id              INT UNSIGNED NOT NULL,
@@ -79,17 +87,7 @@ sqlCREATE TABLE customize_orders (
     FOREIGN KEY (delivery_id) REFERENCES delivery_info(id)  -- ← ناقصة!
 );
   
-CREATE TABLE customize_orders (
-    id                   INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id              INT UNSIGNED NOT NULL,
-    customize_product_id INT UNSIGNED NOT NULL,
-    order_name           VARCHAR(255) NOT NULL,
-    order_definition     TEXT,
-    status               ENUM('pending','confirmed','delivered') NOT NULL DEFAULT 'pending',
-    order_date           TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id)              REFERENCES users(id)              ON DELETE CASCADE,
-    FOREIGN KEY (customize_product_id) REFERENCES customize_products(id) ON DELETE CASCADE
-);
+
 
 CREATE TABLE customer_reviews (
     id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
