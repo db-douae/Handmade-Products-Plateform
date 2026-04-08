@@ -1,5 +1,10 @@
-
-<httml lan="ar">
+<?php
+require_once __DIR__ . '/../../app/config/database.php';
+require_once __DIR__ . '/../../app/controllers/AuthController.php';
+$controller = new AuthController($pdo);
+$controller->register();
+?>
+<html lan="ar">
     <head>
         <meta charset="UTF-8">
         <title>Sign In</title>
@@ -9,32 +14,34 @@
         <div class="wrapper">
             <h1>Sign Up</h1>
             
-            <form action="#">
+            <form action="" method="POST">
                 <div class="content">
                 <label>First Name:</label>
-                <input type="text" placeholder="First Name">
+                <input type="text" name="first_name" placeholder="First Name">
                  <label>Last Name:</label>
-                <input type="text" placeholder="Last Name"></div>
+                <input type="text" name="last_name" placeholder="Last Name"></div>
                 <br>
                 <div class="content">
                  <label>Email:</label>
-                <input type="email" placeholder="Email">
+                <input type="email" name="email" placeholder="Email">
                  <label>Rewrite the email:</label>
-                <input type="email" placeholder="Re-Email"></div>
+                <input type="email" name="re-email" placeholder="Re-Email"></div>
                 <br>
                 <div class="content">
                  <label>password:</label>
-                <input type="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password">
                  <label>rewrite the password:</label>
-                <input type="password" placeholder="Re-Password"></div>
+                <input type="password" name="re-password" placeholder="Re-Password"></div>
 
-            </form>
+            
             <div class="terms">
                 <input type="checkbox" id="checkbox"> 
                 <label for="checkbox">I agree to these <a href="#">Terms & Conditions</a></label>
 
             </div>
-            <button>Sig Up</button>
+       
+            <button type="submit">Sign Up</button>
+         </form>    
             <div class="member">
                 Already a member? <a href="login.php">Login here</a>
 

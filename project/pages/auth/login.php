@@ -1,3 +1,9 @@
+<?php
+require_once __DIR__ . '/../../app/config/database.php';
+require_once __DIR__ . 'ّ/../../app/controllers/AuthController.php';
+$controller = new AuthController($pdo);
+$controller->login();
+?>
 <html lan="ar">
     <head>
         <meta charset="UTF-8">
@@ -7,16 +13,16 @@
     <body>
         <div class="wrapper">
             <h1>Log In</h1>
-            <form action="#">
+            <form action="" method="POST">
                 <div class="content">
                 <label>email: </label>
-                <input type="email" placeholder="Email"></div>
+                <input type="email" name="email" placeholder="Email"></div>
                 <div class="content">
                 <label>password:</label>
-                <input type="password" placeholder="Password"></div>
-
+                <input type="password" name="password" placeholder="Password"></div>
+                 <button type="submit">Log In</button>
             </form>
-            <button>Log In</button>
+            
             
             <h1></h1>
             <div class="member">
