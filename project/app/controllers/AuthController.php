@@ -12,6 +12,7 @@ class AuthController {
     }
     
     public function login() { 
+        startSession();
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
            $email = $_POST['email'];
@@ -30,7 +31,7 @@ class AuthController {
     }
 
     public function register(){
-
+        startSession();
         if($_SERVER["REQUEST_METHOD"]=="POST"){
 
             $first_name=$_POST['first_name'];
@@ -62,7 +63,8 @@ class AuthController {
         logoutUser();
     }
 
-    public function saveInterests($id, $interests){
+    public function saveInterests(){
+        startSession();
         if($_SERVER["REQUEST_METHOD"]=="POST"){
 
             $interests=$_POST['interests'];

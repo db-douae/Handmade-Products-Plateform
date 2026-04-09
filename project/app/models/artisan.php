@@ -33,5 +33,14 @@ public function getShop($userId){
     $stmt->execute([$userId]);
     return $stmt->fetch();
 }
+
+public function createShop($shopName, $categoryName) {
+    $stmt = $this->pdo->prepare(
+        "INSERT INTO artisan_shops (shop_name, category_name) VALUES (?, ?)"
+    );
+    $stmt->execute([$shopName, $categoryName]);
+    return $this->pdo->lastInsertId();
+}
+
 }
 ?>

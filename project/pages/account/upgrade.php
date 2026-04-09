@@ -1,3 +1,17 @@
+<?php
+require_once __DIR__ . '/../../app/config/database.php';
+require_once __DIR__ . '/../../app/helpers/session.php';
+require_once __DIR__ . '/../../app/controllers/UserController.php';
+startSession();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+$controller->upgradeToArtisan(
+    $_SESSION['userId'],
+    $_POST['shop_name'],
+    $_POST['category_name'],
+    $_POST['description']
+);
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,6 +20,7 @@
         <title>Upgrade</title>
     </head>
     <body>
+        <form action="" method="POST">
         <div class="card">
             <div class="back">
                 <button><</button>
@@ -15,12 +30,12 @@
             <div class="info-upgrade">
             <div class="form-group">
             <label>Shop Name</label>
-            <input type="text" placeholder="example: hirfa shop">
+            <input type="text" name="shop_name" placeholder="example: hirfa shop">
             </div>
             <div class="form-group">
             <label>Choose your category</label> 
-            <select>
-                <option>else</option>
+            <select name="category_name">
+                <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -32,7 +47,7 @@
         </div>
             <div class="form-group">
   <label>Service definition</label>
-  <textarea></textarea>
+  <textarea name="description"></textarea>
 </div>
 <div class="form-group">
             <label>Cover to your shop!</label> 
@@ -43,10 +58,11 @@
            
             </div>
          <div class="update">
-            <button>Save</button>
+            <button type="submit">Save</button>
             </div> 
 
         </div>
+</form>
 <script>
 document.getElementById('avatarInput').addEventListener('change', function() {
   const file = this.files[0];

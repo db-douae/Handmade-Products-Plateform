@@ -14,9 +14,10 @@ class UserController {
         $this->artisanModel = new Artisan($pdo);
     }
 
-    public function upgradeToArtisan($userId, $shopId, $description){
-    $this->userModel->updateRole($userId);
-    $this->artisanModel->create($userId, $shopId, $description);      
+    public function upgradeToArtisan($userId, $shopName, $categoryName, $description) {
+         $shopId = $this->artisanModel->createShop($shopName, $categoryName);
+         $this->userModel->updateRole($userId);
+         $this->artisanModel->create($userId, $shopId, $description);
     }
 
     public function getProfile($id){
