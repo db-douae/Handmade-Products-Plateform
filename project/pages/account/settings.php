@@ -2,9 +2,33 @@
 require_once __DIR__ . '/../../app/config/database.php';
 require_once __DIR__ . '/../../app/helpers/session.php';
 require_once __DIR__ . '/../../app/controllers/UserController.php';
-startSession();
+requireLogin();
 $controller = new UserController($pdo);
 $profile = $controller->getProfile($_SESSION['userId']);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $action = $_POST['action'];
+    
+    if ($action == 'update_profile') {
+        $controller->updateProfile($_SESSION['userId'], $_POST);
+        
+} elseif ($action == 'change_password') {
+    $controller->changePassword(
+        $_SESSION['userId'],
+        $_POST['password'],
+        $_POST['new_password'],
+        $_POST['re_password']
+    );
+} elseif ($action == 'delete_account') {
+    $controller->deleteAccount(
+        $_SESSION['userId'],
+        $_POST['password']
+    );
+}
+if ($action == 'update_picture') {
+    $controller->updateProfilePicture($_SESSION['userId']);
+}
+
+}
 ?>
 <!DOCTYPE html>         
 <html>      
@@ -16,15 +40,25 @@ $profile = $controller->getProfile($_SESSION['userId']);
   <body>
 
         <?php //include '../../layouts/header.php'; ?>
+<h3><?php if (isset($_SESSION['error'])): ?>
+    <p style="color:red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+<?php endif; ?>
+<?php if (isset($_SESSION['success'])): ?>
+    <p style="color:green;"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></p>
+<?php endif; ?></h3>
 
 <div class="all">
 <div class="avatar">
-<img id="avatarPreview" class="pfp"/>
+<img id="avatarPreview" class="pfp" src="<?php echo $profile['profile_picture'] 
+    ? '/Handmade-Products-Plateform/project/public/uploads/' . $profile['profile_picture']
+    : '/Handmade-Products-Plateform/project/public/assets/images/default-avatar.png'; 
+?>"/>
 <br>
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="action" value="update_picture">
+<input type="file" id="avatarInput" name="avatarInput" hidden>
 <div class="avatar-controls">
-<label for="avatarInput" class="btn-browse">Browse</label>
-<input type="file" id="avatarInput" hidden />   
+<label for="avatarInput" class="btn-browse">Browse</label>  
 <span id="fileName"><i style="color: rgb(77, 77, 77) ;">No file selected</i></span>  
 <div class="update">
     <button type="submit">Update pfp</button>
@@ -34,6 +68,8 @@ $profile = $controller->getProfile($_SESSION['userId']);
 </div>
 
 <form action="" method="POST">
+
+<input type="hidden" name="action" value="update_profile">
 <div class="personal">
   <h2>Personal Informations</h2>
 
@@ -58,6 +94,7 @@ $profile = $controller->getProfile($_SESSION['userId']);
 </div>
 </form>
 <form action="" method="POST">
+    <input type="hidden" name="action" value="change_password"> 
 <div class="change-password">
   <h2>Change Password</h2>
 
@@ -86,6 +123,7 @@ $profile = $controller->getProfile($_SESSION['userId']);
 </div>
 
 <form action="" method="POST">
+    <input type="hidden" name="action" value="delete_account">
 <div class="delete">
 <div class="password">
     <label>Confirm password</label>

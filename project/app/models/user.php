@@ -28,14 +28,12 @@ public function create($data) {
 }
 
 public function updateProfile($id, $data){
-            $stmt = $this->pdo->prepare("UPDATE users SET first_name = ?, last_name = ?, profile_picture = ?, password = ?, email= ?, role = ? WHERE id = ?");
+            $stmt = $this->pdo->prepare("UPDATE users SET first_name = ?, last_name = ?, email= ? WHERE id = ?");
                 $stmt->execute([
                     $data['first_name'],
                     $data['last_name'],
-                    $data['profile_picture'],
-                    $data['password'],
                     $data['email'],
-                    $data['role'], $id
+                    $id
                 ]);
     }
 
@@ -65,6 +63,14 @@ public function getAllUsers(){
 public function deleteUser($id){
     $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = ?");
     $stmt->execute([$id]);
+}
+public function updatePassword($id, $newPassword) {
+    $stmt = $this->pdo->prepare("UPDATE users SET password = ? WHERE id = ?");
+    $stmt->execute([$newPassword, $id]);
+}
+public function updateProfilePicture($id, $filename) {
+    $stmt = $this->pdo->prepare("UPDATE users SET profile_picture = ? WHERE id = ?");
+    $stmt->execute([$filename, $id]);
 }
 
 }

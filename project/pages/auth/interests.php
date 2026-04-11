@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../../app/config/database.php';
+require_once __DIR__ . '/../../app/helpers/session.php';
 require_once __DIR__ . '/../../app/controllers/AuthController.php';
+requireLogin();
 $controller = new AuthController($pdo);
 $controller->saveInterests();
 ?>
@@ -43,6 +45,15 @@ $controller->saveInterests();
         </div>
         
         <script>
+                  // ناقص هذا الكود
+document.querySelectorAll('.interest').forEach(function(card) {
+    card.addEventListener('click', function() {
+        this.classList.toggle('selected');
+        document.getElementById('count').textContent = 
+            document.querySelectorAll('.interest.selected').length;
+    });
+});
+
 document.querySelector('button[type="submit"]').addEventListener('click', function() {
     const selected = [...document.querySelectorAll('.interest.selected')]
         .map(el => el.querySelector('p').textContent);

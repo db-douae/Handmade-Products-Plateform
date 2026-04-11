@@ -3,8 +3,7 @@ require_once __DIR__ . '/../../app/config/database.php';
 require_once __DIR__ . '/../../app/helpers/session.php';
 require_once __DIR__ . '/../../app/controllers/AdminController.php';
 require_once __DIR__ . '/../../app/controllers/NotificationController.php';
-startSession();
-
+requireAdmin();
 $adminController = new AdminController($pdo);
 $notifController = new NotificationController($pdo);
 

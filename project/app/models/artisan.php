@@ -12,15 +12,16 @@ public function findByUserId($userId){
         return $stmt->fetch();
 }
 
-public function create($userId, $shopId, $description){
+public function create($userId, $shopId, $description, $category_artisan){
         $stmt = $this->pdo->prepare(
-        "INSERT INTO artisans (id, shop_id, description) 
-         VALUES (?, ?, ?)"
+        "INSERT INTO artisans (id, shop_id, description, category_artisan) 
+         VALUES (?, ?, ?, ?)"
     );
     $stmt->execute([
         $userId,
         $shopId,
-        $description
+        $description,
+        $category_artisan
     ]);
 }
 

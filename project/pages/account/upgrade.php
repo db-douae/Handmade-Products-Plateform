@@ -2,7 +2,9 @@
 require_once __DIR__ . '/../../app/config/database.php';
 require_once __DIR__ . '/../../app/helpers/session.php';
 require_once __DIR__ . '/../../app/controllers/UserController.php';
-startSession();
+
+requireLogin();
+$controller = new UserController($pdo);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $controller->upgradeToArtisan(
     $_SESSION['userId'],
@@ -20,6 +22,7 @@ $controller->upgradeToArtisan(
         <title>Upgrade</title>
     </head>
     <body>
+
         <form action="" method="POST">
         <div class="card">
             <div class="back">
@@ -27,6 +30,12 @@ $controller->upgradeToArtisan(
                 <h3>Upgrade to Artisan account</h3>
                 
             </div>
+            <h3><?php if (isset($_SESSION['error'])): ?>
+    <p style="color:red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+<?php endif; ?>
+<?php if (isset($_SESSION['success'])): ?>
+    <p style="color:green;"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></p>
+<?php endif; ?></h3>
             <div class="info-upgrade">
             <div class="form-group">
             <label>Shop Name</label>

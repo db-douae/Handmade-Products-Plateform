@@ -13,7 +13,9 @@ $controller->register();
     <body>
         <div class="wrapper">
             <h1>Sign Up</h1>
-            
+            <h5><?php if (isset($_SESSION['error'])): ?>
+    <p style="color:red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+<?php endif; ?></h5>
             <form action="" method="POST">
                 <div class="content">
                 <label>First Name:</label>
@@ -25,20 +27,20 @@ $controller->register();
                  <label>Email:</label>
                 <input type="email" name="email" placeholder="Email">
                  <label>Rewrite the email:</label>
-                <input type="email" name="re-email" placeholder="Re-Email"></div>
+                <input type="email" name="re_email" placeholder="Re-Email"></div>
                 <br>
                 <div class="content">
                  <label>password:</label>
                 <input type="password" name="password" placeholder="Password">
                  <label>rewrite the password:</label>
-                <input type="password" name="re-password" placeholder="Re-Password"></div>
+                <input type="password" name="re_password" placeholder="Re-Password"></div>
 
             
-            <div class="terms">
+            <!--div class="terms">
                 <input type="checkbox" id="checkbox"> 
                 <label for="checkbox">I agree to these <a href="#">Terms & Conditions</a></label>
 
-            </div>
+            </div-->
        
             <button type="submit">Sign Up</button>
          </form>    

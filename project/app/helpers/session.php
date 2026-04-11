@@ -25,6 +25,22 @@ function logoutUser() {
     session_destroy();
     header("Location: /Handmade-Products-Plateform/project/pages/auth/login.php");
     exit();
- }    
+ }  
+ 
+ function requireLogin() {
+    startSession();
+    if (!isLoggedIn()) {
+        header("Location: /Handmade-Products-Plateform/project/pages/auth/login.php");
+        exit();
+    }
+}
+
+function requireAdmin() {
+    requireLogin();
+    if (getUserRole() !== 'admin') {
+        header("Location: /Handmade-Products-Plateform/project/pages/index.php");
+        exit();
+    }
+}
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../app/config/database.php';
-require_once __DIR__ . 'ّ/../../app/controllers/AuthController.php';
+require_once __DIR__ . '/../../app/controllers/AuthController.php';
 $controller = new AuthController($pdo);
 $controller->login();
 ?>
@@ -13,6 +13,9 @@ $controller->login();
     <body>
         <div class="wrapper">
             <h1>Log In</h1>
+            <h5><?php if (isset($_SESSION['error'])): ?>
+    <p style="color:red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+<?php endif; ?></h5>
             <form action="" method="POST">
                 <div class="content">
                 <label>email: </label>

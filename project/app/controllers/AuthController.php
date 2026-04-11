@@ -25,7 +25,9 @@ class AuthController {
              header("Location: /Handmade-Products-Plateform/project/pages/index.php");
              exit();
               } else {
-                     echo "wrong information!";
+                    $_SESSION['error'] = "Wrong informations.";
+            header("Location: /Handmade-Products-Plateform/project/pages/auth/login.php");
+exit();
             }  
         }
     }
@@ -39,7 +41,31 @@ class AuthController {
             $email=$_POST['email'];
             $password=$_POST['password'];
 
+            $re_password = $_POST['re_password'];
+
+            if ($password !== $re_password) {
+            $_SESSION['error'] = "Passwords do not match!";
+            header("Location: /Handmade-Products-Plateform/project/pages/auth/signin.php");
+exit();
+            return;
+            }
+
+            $re_email = $_POST['re_email'];
+
+            if ($email !== $re_email) {
+          $_SESSION['error'] = "Emails do not match!";
+            header("Location: /Handmade-Products-Plateform/project/pages/auth/signin.php");
+exit();
+            return;
+            }
+            if (strlen($password) < 8) {
+    $_SESSION['error'] = "Password must be at least 8 characters!";
+    header("Location: /Handmade-Products-Plateform/project/pages/auth/signin.php");
+    exit();
+}
+
             $existingUser = $this->userModel->findByEmail($email);
+
             if(!$existingUser){
                 $password=password_hash($password, PASSWORD_DEFAULT);
                 $data = [
@@ -51,6 +77,9 @@ class AuthController {
                         ];
 
                 $this->userModel->create($data);
+                $user = $this->userModel->findByEmail($email); // نجيب المستخدم الجديد
+                loginUser($user);
+
                 header("Location: /Handmade-Products-Plateform/project/pages/auth/interests.php");
             }else{
                 echo "choose another email.";
