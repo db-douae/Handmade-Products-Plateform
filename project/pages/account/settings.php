@@ -117,10 +117,12 @@ if ($action == 'update_picture') {
 </form>
 
 
+<?php if ($profile['role'] !== 'artisan'): ?>
 <div class="upgrade">
     <p>upgrade to <b>Artisan account</b>.</p>
-    <button onclick="window.location.href='upgrade.php';">Upgrade your account  ></button>
+    <button onclick="window.location.href='upgrade.php';">Upgrade your account ></button>
 </div>
+<?php endif; ?>
 
 <form action="" method="POST">
     <input type="hidden" name="action" value="delete_account">

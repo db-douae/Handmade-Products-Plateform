@@ -4,6 +4,10 @@ require_once __DIR__ . '/../../app/helpers/session.php';
 require_once __DIR__ . '/../../app/controllers/UserController.php';
 
 requireLogin();
+if (getUserRole() === 'artisan') { // تحقق أولاً
+    header("Location: /Handmade-Products-Plateform/project/pages/index.php");
+    exit();
+}
 $controller = new UserController($pdo);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $controller->upgradeToArtisan(
@@ -13,6 +17,7 @@ $controller->upgradeToArtisan(
     $_POST['description']
 );
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,14 +49,14 @@ $controller->upgradeToArtisan(
             <div class="form-group">
             <label>Choose your category</label> 
             <select name="category_name">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
+                <option>Pottery</option>
+                <option>Weaving</option>
+                <option>Embroidery</option>
+                <option>Traditional clothes</option>
+                <option>Handmade sweets and foods</option>
+                <option>jewellery</option>
+                <option>Wood</option>
+                <option selected>Others</option>
             </select>
         </div>
             <div class="form-group">

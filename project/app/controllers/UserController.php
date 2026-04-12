@@ -24,7 +24,7 @@ class UserController {
 $shopId = $this->artisanModel->createShop($shopName, $categoryName);
          $this->userModel->updateRole($userId);
          $this->artisanModel->create($userId, $shopId, $description, $categoryName);
-
+$_SESSION['role'] = 'artisan';
     $_SESSION['success'] = "You are now an artisan!";
     }
 
@@ -50,6 +50,11 @@ $shopId = $this->artisanModel->createShop($shopName, $categoryName);
         $_SESSION['error'] = "Passwords do not match!";
         return;
     }
+
+    if (strlen($newPassword) < 8) {
+    $_SESSION['error'] = "Password must be at least 8 characters!";
+    return;
+}
     
     // 3. حفظ كلمة السر الجديدة
     $hashed = password_hash($newPassword, PASSWORD_DEFAULT);
