@@ -6,7 +6,7 @@ CREATE TABLE users(
     password VARCHAR(255) NOT NULL,
     profile_picture VARCHAR(500) DEFAULT NULL, 
     interests TEXT,
-    role ENUM('buyer','artisan') NOT NULL DEFAULT 'buyer'
+    role ENUM('buyer','artisan','admin') NOT NULL DEFAULT 'buyer'
 );
 
 CREATE TABLE artisan_shops (
@@ -31,6 +31,7 @@ CREATE TABLE products (
 CREATE TABLE artisans(
     id INT UNSIGNED PRIMARY KEY,
     description TEXT,
+    category_artisan VARCHAR(255) DEFAULT NULL,
     shop_id INT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE,
