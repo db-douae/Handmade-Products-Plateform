@@ -38,11 +38,22 @@ input {
 .upgrade{
     padding: 30px;
     margin: 10px auto;
+    background-color: transparent;
+    border-radius:10px;
+    text-align: left;
+    display: flex ;
+    gap: 100px;
+}
+.message {
+    .upgrade{
+    padding: 30px;
+    margin: 10px auto;
     background-color: #fff;
     border-radius:10px;
     text-align: left;
     display: flex ;
     gap: 100px;
+}
 }
 .upgrade button{
     background: #fff;

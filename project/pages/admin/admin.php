@@ -122,14 +122,14 @@ $users = $adminController->getAllUsers();
             <tbody>
                 <?php foreach ($users as $user): ?>
                 <tr>
-                    <td><?php echo $user['id']; ?></td>
-                    <td><?php echo $user['first_name']; ?></td>
-                    <td><?php echo $user['last_name']; ?></td>
-                    <td><?php echo $user['email']; ?></td>
-                    <td><?php echo $user['role']; ?></td>
+                    <td><?php echo clean($user['id']); ?></td>
+                    <td><?php echo clean($user['first_name']); ?></td>
+                    <td><?php echo clean($user['last_name']); ?></td>
+                    <td><?php echo clean($user['email']); ?></td>
+                    <td><?php echo clean($user['role']); ?></td>
                     <td>
                         <form method="POST" action="">
-                            <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                            <input type="hidden" name="user_id" value="<?php echo clean($user['id']); ?>">
                             <button type="submit" name="delete_user" class="btn-delete">Delete</button>
                         </form>
                     </td>

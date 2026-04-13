@@ -40,17 +40,22 @@ if ($action == 'update_picture') {
   <body>
 
         <?php //include '../../layouts/header.php'; ?>
-<h3><?php if (isset($_SESSION['error'])): ?>
+
+
+<div class="message">
+</div>
+
+<div class="all">
+<div class="avatar">
+    <h3><?php if (isset($_SESSION['error'])): ?>
     <p style="color:red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
 <?php endif; ?>
 <?php if (isset($_SESSION['success'])): ?>
     <p style="color:green;"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></p>
 <?php endif; ?></h3>
-
-<div class="all">
-<div class="avatar">
-<img id="avatarPreview" class="pfp" src="<?php echo $profile['profile_picture'] 
-    ? '/Handmade-Products-Plateform/project/public/uploads/' . $profile['profile_picture']
+<br>
+<img id="avatarPreview" class="pfp" src="<?php echo clean($profile['profile_picture']) 
+    ? '/Handmade-Products-Plateform/project/public/uploads/' . clean($profile['profile_picture'])
     : '/Handmade-Products-Plateform/project/public/assets/images/default-avatar.png'; 
 ?>"/>
 <br>
@@ -76,17 +81,17 @@ if ($action == 'update_picture') {
   <div class="name-row">
    <div class="form-group">
   <label>First Name</label>
-  <input type="text" name="first_name" value="<?php echo $profile['first_name']; ?>">
+  <input type="text" name="first_name" value="<?php echo clean($profile['first_name']); ?>">
    </div>
    <div class="form-group">
   <label>Last Name</label>
-  <input type="text" name="last_name" value="<?php echo $profile['last_name']; ?>">
+  <input type="text" name="last_name" value="<?php echo clean($profile['last_name']); ?>">
    </div>
 </div>
 
 <div class="email-input">
     <label>Email</label>
-    <input type="email" name="email" value="<?php echo $profile['email']; ?>">
+    <input type="email" name="email" value="<?php echo clean($profile['email']); ?>">
 </div>
  <div class="update">
     <button type="submit">Save</button>
