@@ -1,3 +1,214 @@
+<?php
+session_start();
+require_once __DIR__ . '/../../app/controllers/ProductController.php';
+require_once __DIR__ . '/../../app/controllers/ShopController.php';
+
+$artisan_id = $_SESSION['user_id'] ?? 1;
+$shopCtrl   = new ShopController();
+$shop       = $shopCtrl->myShop($artisan_id);
+$ctrl       = new ProductController();
+$categories = $ctrl->categories();
+
+$message = '';
+$error   = '';
+
+// تعديل منتج موجود
+$edit_product = null;
+if (isset($_GET['edit'])) {
+    $edit_product = $ctrl->show((int)$_GET['edit']);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_POST['shop_id'] = $shop['id'];
+    $result = $ctrl->store();
+
+    if ($result['success']) {
+        header('Location: /pages/shop/my-shop.php');
+        exit;
+    } else {
+        $error = $result['message'];
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>إضافة منتج</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav class="navbar light">
+    <div class="logo">Craftmen</div>
+    <ul class="nav-links">
+        <li><a href="/pages/shop/my-shop.php">My Shop</a></li>
+    </ul>
+</nav>
+
+<div class="customize-wrapper">
+    <div class="customize-card">
+
+        <div class="card-header">
+            <h2>إضافة منتج جديد</h2>
+            <a href="/pages/shop/my-shop.php" class="btn-close">✕</a>
+        </div>
+
+        <div class="card-tabs">
+            <button class="card-tab active" onclick="switchTab(1)">1 — معلومات المنتج</button>
+            <button class="card-tab" onclick="switchTab(2)">2 — التخصيص</button>
+        </div>
+
+        <?php if ($error): ?>
+            <div style="padding:12px 24px; color:#e74c3c; font-size:13px;">⚠️ <?= $error ?></div>
+        <?php endif; ?>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <!-- TAB 1 -->
+            <div class="tab-content" id="tab-1">
+                <div class="card-body">
+                    <div class="card-left">
+
+                        <div class="form-group">
+                            <label>اسم المنتج:</label>
+                            <input type="text" name="name" required
+                                   value="<?= htmlspecialchars($edit_product['name'] ?? '') ?>"
+                                   placeholder="مثال: وعاء فخاري مزخرف">
+                        </div>
+
+                        <div class="form-group">
+                            <label>وصف المنتج:</label>
+                            <textarea name="description" rows="4"
+                                      placeholder="اشرح المنتج بالتفصيل..."><?= htmlspecialchars($edit_product['description'] ?? '') ?></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>التصنيف:</label>
+                            <select name="category_id">
+                                <option value="">اختر تصنيف...</option>
+                                <?php foreach ($categories as $cat): ?>
+                                <option value="<?= $cat['id'] ?>"
+                                    <?= ($edit_product['category_id'] ?? '') == $cat['id'] ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($cat['name']) ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>السعر ($):</label>
+                                <input type="number" name="price" step="0.01" min="0" required
+                                       value="<?= $edit_product['price'] ?? '' ?>"
+                                       placeholder="0.00">
+                            </div>
+                            <div class="form-group">
+                                <label>الكمية:</label>
+                                <input type="number" name="stock" min="0"
+                                       value="<?= $edit_product['stock'] ?? 0 ?>"
+                                       placeholder="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>قابل للتخصيص:</label>
+                            <div class="toggle-row">
+                                <span>نعم</span>
+                                <label class="toggle">
+                                    <input type="checkbox" name="is_customizable"
+                                           <?= ($edit_product['is_customizable'] ?? 0) ? 'checked' : '' ?>>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-right">
+                        <div class="form-group">
+                            <label>صورة المنتج:</label>
+                            <div class="upload-preview" onclick="document.getElementById('product-img').click()">
+                                <span>+</span>
+                                <small>اضغط لرفع صورة</small>
+                            </div>
+                            <input type="file" id="product-img" name="image" accept="image/*"
+                                   style="display:none" onchange="previewImg(this)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2 -->
+            <div class="tab-content hidden" id="tab-2">
+                <div class="card-body">
+                    <div class="card-left">
+                        <div class="form-group">
+                            <label>الألوان / الأشكال المتاحة:</label>
+                            <div class="shapes-grid">
+                                <?php for ($i = 0; $i < 12; $i++): ?>
+                                <div class="shape-item"><span>+</span></div>
+                                <?php endfor; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-right">
+                        <div class="form-group">
+                            <label>الكتابة على المنتج:</label>
+                            <div class="toggle-row">
+                                <span>نعم</span>
+                                <label class="toggle">
+                                    <input type="checkbox" onchange="toggleSection('text-opt', this)">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group hidden" id="text-opt">
+                            <input type="text" name="custom_text_option" placeholder="مثال: اسم الزبون...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn-next">✓ حفظ المنتج</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+function switchTab(num) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden'));
+    document.querySelectorAll('.card-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + num).classList.remove('hidden');
+    document.querySelectorAll('.card-tab')[num - 1].classList.add('active');
+}
+
+function toggleSection(id, checkbox) {
+    document.getElementById(id).classList.toggle('hidden', !checkbox.checked);
+}
+
+function previewImg(input) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            const box = document.querySelector('.upload-preview');
+            box.style.backgroundImage = `url(${e.target.result})`;
+            box.style.backgroundSize = 'cover';
+            box.style.backgroundPosition = 'center';
+            box.querySelector('span').style.display = 'none';
+            box.querySelector('small').style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    }
+}
+</script>
+
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
