@@ -1,3 +1,111 @@
+<?php
+session_start();
+require_once __DIR__ . '/../../app/controllers/OrderController.php';
+
+$order_id = (int)($_GET['order_id'] ?? $_SESSION['order_id'] ?? 0);
+$ctrl     = new OrderController();
+$message  = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $result = $ctrl->saveDelivery($order_id);
+    if ($result['success']) {
+        header('Location: /pages/orders/CustomOrder.php?order_id=' . $order_id);
+        exit;
+    } else {
+        $message = $result['message'];
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>معلومات التوصيل</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav class="navbar light">
+    <div class="logo">Craftmen</div>
+</nav>
+
+<div class="customize-wrapper">
+    <div class="customize-card">
+
+        <div class="card-header">
+            <h2>معلومات التوصيل</h2>
+            <a href="#" class="btn-close">✕</a>
+        </div>
+
+        <?php if ($message): ?>
+            <div style="padding:12px 24px; color:#e74c3c; font-size:13px;">⚠️ <?= $message ?></div>
+        <?php endif; ?>
+
+        <form method="POST">
+            <div class="card-body" style="grid-template-columns:1fr;">
+                <div style="max-width:480px; width:100%; margin:0 auto;">
+
+                    <div class="form-group">
+                        <label>الاسم الكامل:</label>
+                        <input type="text" name="full_name" required placeholder="مثال: أحمد بن علي">
+                    </div>
+
+                    <div class="form-group">
+                        <label>رقم الهاتف:</label>
+                        <input type="tel" name="phone" required placeholder="0550 000 000">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>الولاية:</label>
+                            <select name="wilaya" required>
+                                <option value="">اختر ولاية...</option>
+                                <option>الجزائر</option>
+                                <option>البليدة</option>
+                                <option>وهران</option>
+                                <option>قسنطينة</option>
+                                <option>عنابة</option>
+                                <option>تيزي وزو</option>
+                                <option>سطيف</option>
+                                <option>بجاية</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>المدينة:</label>
+                            <input type="text" name="city" required placeholder="المدينة">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>العنوان التفصيلي:</label>
+                        <textarea name="address" rows="3" required
+                                  placeholder="الشارع، الحي، رقم البناية..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ملاحظات إضافية: <span style="color:var(--gray)">(اختياري)</span></label>
+                        <input type="text" name="notes" placeholder="مثال: قرب المسجد...">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn-next">تأكيد الطلب ✓</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-bottom">
+        <p>© 2025 Craftmen. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,64 +140,8 @@
   <div class="form-group">
     <label>Wilaya</label>
     <select>
-      <option >1- Adrar</option>
-      <option>2- Chlef</option>
-      <option>3- Laghouat</option>
-      <option>4- Oum El Bouaghi</option>
-      <option>5- Batna</option>
-      <option>6- Béjaïa</option>
-      <option>7- Biskra</option>
-      <option>8- Béchar</option>
-      <option>9- Blida</option>
-      <option>10- Bouira</option>
-      <option>11- Tamanrasset</option>
-      <option>12- Tébessa</option>
-      <option>13- Tlemcen</option>
-      <option>14- Tiaret</option>
-      <option>15- Tizi Ouzou</option>
-      <option>16- Algiers</option>
-      <option>17- Djelfa</option>
-      <option>18- Jijel</option>
-      <option>19- Sétif</option>
-      <option>20- Saïda</option>
-      <option>21- Skikda</option>
-      <option>22- Sidi Bel Abbès</option>
-      <option>23- Annaba</option>
-      <option>24- Guelma</option>
-      <option>25- Constantine</option>
-      <option>26- Médéa</option>
-      <option>27- Mostaganem</option>
-      <option>28- M'Sila</option>
-      <option>29- Mascara</option>
-      <option>30- Ouargla</option>
-      <option>31- Oran</option>
-      <option>32- El Bayadh</option>
-      <option>33- Illizi</option>
-      <option>34- Bordj Bou Arréridj</option>
-      <option>35- Boumerdès</option>
-      <option>36- El Tarf</option>
-      <option>37- Tindouf</option>
-      <option>38- Tissemsilt</option>
-      <option>39- El Oued</option>
-      <option>40- Khenchela</option>
-      <option>41- Souk Ahras</option>
-      <option>42- Tipaza</option>
-      <option>43- Mila</option>
-      <option>44- Aïn Defla</option>
-      <option>45- Naâma</option>
-      <option>46- Aïn Témouchent</option>
-      <option>47- Ghardaïa</option>
-      <option>48- Relizane</option>
-      <option>49- Timimoun</option>
-      <option>50- Bordj Badji Mokhtar</option>
-      <option>51- Ouled Djellal</option>
-      <option>52- Béni Abbès</option>
-      <option>53- In Salah</option>
-      <option>54- In Guezzam</option>
-      <option>55- Touggourt</option>
-      <option>56- Djanet</option>
-      <option>57- El M'Ghair</option>
-      <option>58- El Meniaa</option>
+      <option>Medea</option>
+      <option>Blida</option>
     </select>
   </div>
   <div class="form-group">
