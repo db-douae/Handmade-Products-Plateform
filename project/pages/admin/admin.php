@@ -98,8 +98,8 @@ $users = $adminController->getAllUsers();
 <!-- Sidebar -->
 <div class="sidebar">
     <h2>Admin Panel</h2>
-    <a href="#" onclick="showSection('users')">👥 Manage Users</a>
-    <a href="#" onclick="showSection('notifications')">🔔 Notifications</a>
+    <a href="#" onclick="showSection('users')">Manage Users</a>
+    <a href="#" onclick="showSection('notifications')">Notifications</a>
 </div>
 
 <!-- Main -->
@@ -107,7 +107,7 @@ $users = $adminController->getAllUsers();
 
     <!-- Manage Users -->
     <div class="section active" id="users">
-        <h1>👥 Manage Users</h1>
+        <h1>Manage Users</h1>
         <table>
             <thead>
                 <tr>
@@ -141,7 +141,7 @@ $users = $adminController->getAllUsers();
 
     <!-- Notifications -->
     <div class="section" id="notifications">
-        <h1>🔔 Notifications</h1>
+        <h1>Notifications</h1>
         <table>
             <thead>
                 <tr>

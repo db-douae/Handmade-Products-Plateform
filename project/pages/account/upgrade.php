@@ -28,20 +28,21 @@ $controller->upgradeToArtisan(
     </head>
     <body>
 
-        <form action="" method="POST">
+        
         <div class="card">
             <div class="back">
-                <button><</button>
+                <button onclick="window.location.href='settings.php';">&lt;</button>
                 <h3>Upgrade to Artisan account</h3>
                 
             </div>
-            <h3><?php if (isset($_SESSION['error'])): ?>
+            <form action="" method="POST">
+            <div class="info-upgrade">
+                <h3><?php if (isset($_SESSION['error'])): ?>
     <p style="color:red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
 <?php endif; ?>
 <?php if (isset($_SESSION['success'])): ?>
     <p style="color:green;"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></p>
 <?php endif; ?></h3>
-            <div class="info-upgrade">
             <div class="form-group">
             <label>Shop Name</label>
             <input type="text" name="shop_name" placeholder="example: hirfa shop">
@@ -63,12 +64,12 @@ $controller->upgradeToArtisan(
   <label>Service definition</label>
   <textarea name="description"></textarea>
 </div>
-<div class="form-group">
+<!--div class="form-group">
             <label>Cover to your shop!</label> 
             <label for="avatarInput" class="btn-browse">Browse</label>
             <input type="file" id="avatarInput" hidden />   
             <span id="fileName"><i style="color: rgb(77, 77, 77) ;">No file selected</i></span>  
-        </div>
+        </div-->
            
             </div>
          <div class="update">

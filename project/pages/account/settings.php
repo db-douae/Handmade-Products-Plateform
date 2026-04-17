@@ -66,7 +66,7 @@ if ($action == 'update_picture') {
 <label for="avatarInput" class="btn-browse">Browse</label>  
 <span id="fileName"><i style="color: rgb(77, 77, 77) ;">No file selected</i></span>  
 <div class="update">
-    <button type="submit">Update pfp</button>
+    <button type="submit" onclick="window.location.href='settings.php';">Update pfp</button>
 </div>       
 </div>
 </form>

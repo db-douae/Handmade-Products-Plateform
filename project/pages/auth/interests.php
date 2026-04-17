@@ -16,7 +16,7 @@ $controller->saveInterests();
     <body>
         <div class="card">
             <div class="back">
-                <button><</button>
+                <button onclick="window.location.href='../index.php';"><</button>
                 <h3>Choose your Interests</h3>
             </div>
             <div class="choose">
@@ -25,13 +25,13 @@ $controller->saveInterests();
             <form action="" method="POST">
             <input type="hidden" name="interests" id="interests-value">
                 <div class="interests-grid">
-                <div class="interest"><p>Pottery</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/1.png" class="icons"></div>
-                <div class="interest"><p>Weaving</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/2.png" class="icons"></div>
-                <div class="interest"><p>Embroidery</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/3.png" class="icons"></div>
-                <div class="interest"><p>Traditional clothes</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/4.png" class="icons"></div>
-                <div class="interest"><p>Handmade sweets and foods</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/5.png" class="icons"></div>
-                <div class="interest"><p>jewellery</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/6.png" class="icons"></div>
-                <div class="interest"><p>Wood</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/7.png" class="icons"></div>
+                <div class="interest"><p>Pottery</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/5.png" class="icons"></div>
+                <div class="interest"><p>Weaving</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/3.png" class="icons"></div>
+                <div class="interest"><p>Embroidery</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/16.png" class="icons"></div>
+                <div class="interest"><p>Traditional clothes</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/14.png" class="icons"></div>
+                <div class="interest"><p>Handmade sweets and foods</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/foods.png" class="icons"></div>
+                <div class="interest"><p>jewellery</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/2.png" class="icons"></div>
+                <div class="interest"><p>Wood</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/1.png" class="icons"></div>
                 <div class="interest"><p>Others</p><img src="/Handmade-Products-Plateform/project/public/assets/images/icons/8.png" class="icons"></div>
             </div>
 
