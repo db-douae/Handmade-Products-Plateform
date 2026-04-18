@@ -1,3 +1,123 @@
+<?php
+session_start();
+if (empty($_SESSION['user_id'])) {
+    header('Location: /pages/auth/login.php');
+    exit;
+}
+
+require_once __DIR__ . '/../../app/controllers/OrderController.php';
+require_once __DIR__ . '/../../app/config/database.php';
+
+$customize_product_id = (int)($_GET['customize_product_id'] ?? 0);
+
+// Load customize product + product info
+$db   = getDB();
+$stmt = $db->prepare("
+    SELECT cp.*, p.product_name, p.price, p.image_product
+    FROM customize_products cp
+    JOIN products p ON cp.product_id = p.id
+    WHERE cp.id = ?
+");
+$stmt->execute([$customize_product_id]);
+$customize = $stmt->fetch();
+
+if (!$customize) {
+    header('Location: /pages/products.php');
+    exit;
+}
+
+$controller = new OrderController();
+$message    = '';
+$error      = '';
+$order_id   = null;
+
+// Handle POST: place the order
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_GET['customize_product_id'] = $customize_product_id; // pass to controller
+
+    // Manually call placeCustomOrder
+    $data = [
+        'customize_product_id' => $customize_product_id,
+        'order_name'           => trim($_POST['order_name'] ?? ''),
+        'order_definition'     => trim($_POST['order_definition'] ?? ''),
+    ];
+
+    if (empty($data['order_name'])) {
+        $error = 'اسم الطلب مطلوب';
+    } else {
+        require_once __DIR__ . '/../../app/models/Order.php';
+        $orderModel = new Order();
+        $order_id = $orderModel->placeCustomOrder(
+            (int)$_SESSION['user_id'],
+            $customize_product_id,
+            $data['order_name'],
+            $data['order_definition']
+        );
+
+        header("Location: /pages/orders/delivery-info.php?order_type=custom&order_id=$order_id");
+        exit;
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تأكيد الطلب المخصص</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+<?php include __DIR__ . '/../partials/header.php'; ?>
+
+<main class="container narrow">
+    <h1>تأكيد الطلب المخصص</h1>
+
+    <!-- Customization Summary -->
+    <div class="order-summary card">
+        <h3>customise summary></h3>
+        <?php if ($customize['image_product']): ?>
+            <img src="<?= htmlspecialchars($customize['image_product']) ?>" alt="" style="max-height:150px;">
+        <?php endif; ?>
+        <p><strong>product</strong> <?= htmlspecialchars($customize['product_name']) ?></p>
+        <p><strong>main price</strong> <?= number_format($customize['price'], 2) ?> دج</p>
+        <?php if ($customize['color']): ?>
+            <p><strong>color:</strong> <?= htmlspecialchars($customize['color']) ?></p>
+        <?php endif; ?>
+        <?php if ($customize['size']): ?>
+            <p><strong>size:</strong> <?= htmlspecialchars($customize['size']) ?></p>
+        <?php endif; ?>
+        <?php if ($customize['text']): ?>
+            <p><strong>text:</strong> <?= htmlspecialchars($customize['text']) ?></p>
+        <?php endif; ?>
+    </div>
+
+    <?php if ($error): ?><div class="alert alert-error"><?= htmlspecialchars($error) ?></div><?php endif; ?>
+
+    <!-- Order Form -->
+    <form method="POST" class="form-card">
+        <div class="form-group">
+            <label>Order Name*</label>
+            <input type="text" name="order_name" required
+                   placeholder="مثال: قلادة ذهبية مخصصة لعيد الأم">
+        </div>
+
+        <div class="form-group">
+            <label>Added details</label>
+            <textarea name="order_definition" rows="4"
+                      placeholder="any details you would like to add to the artisan..."></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">confirm and send Order</button>
+            <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+        </div>
+    </form>
+</main>
+
+<?php include __DIR__ . '/../partials/footer.php'; ?>
+</body>
+</html>
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -33,7 +153,7 @@
 
             <!-- HEADER -->
             <div class="card-header">
-                <h2>تخصيص طلب</h2>
+                <h2>Customise Order</h2>
                 <button class="btn-close">✕</button>
             </div>
 
@@ -45,7 +165,7 @@
 
                     <!-- شبكة الصور -->
                     <div class="form-group">
-                        <label>الألوان المتاحة / الأشكال المتاحة:</label>
+                        <label>Available colors/Available shapes</label>
                         <div class="shapes-grid">
                             <div class="shape-item active">
                                 <span>+</span>
@@ -88,7 +208,7 @@
 
                     <!-- اختيار المقاس -->
                     <div class="form-group">
-                        <label>اختيار المقاس:</label>
+                        <label>choose size</label>
                         <div class="sizes-row">
                             <button class="size-btn active">S</button>
                             <button class="size-btn">M</button>
@@ -101,12 +221,13 @@
 
                     <!-- اختيار حجم ملف -->
                     <div class="form-group">
-                        <label>اختيار حجم منتج:</label>
+                        <label>choose product size</label>
                         <div class="size-product-row">
                             <select>
-                                <option>420 × 103</option>
+                                <option>420 x 103</option>
                                 <option>500 × 200</option>
                                 <option>300 × 300</option>
+
                             </select>
                             <span>في حالة المنتج يطلع عن نفسه</span>
                         </div>
@@ -126,7 +247,7 @@
 
                     <!-- إضافة خلفية على منتج -->
                     <div class="form-group">
-                        <label>إضافة خلفية على منتج:</label>
+                        <label>Add product Backround</label>
                         <input type="file" accept="image/*">
                     </div>
 

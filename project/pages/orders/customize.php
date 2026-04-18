@@ -1,3 +1,115 @@
+<?php
+session_start();
+if (empty($_SESSION['user_id'])) {
+    header('Location: /pages/auth/login.php');
+    exit;
+}
+
+require_once __DIR__ . '/../../app/config/database.php';
+require_once __DIR__ . '/../../app/models/Product.php';
+
+$product_id   = (int)($_GET['product_id'] ?? 0);
+$productModel = new Product();
+$product      = $product_id ? $productModel->getById($product_id) : null;
+
+if (!$product) {
+    header('Location: /pages/products.php');
+    exit;
+}
+
+$db = getDB();
+
+// Load existing customize_product for this product
+$stmt = $db->prepare("SELECT * FROM customize_products WHERE product_id = ?");
+$stmt->execute([$product_id]);
+$customize = $stmt->fetch();
+
+$message = '';
+$error   = '';
+
+// Handle POST: save customization request
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $color  = trim($_POST['color'] ?? '');
+    $size   = trim($_POST['size'] ?? '');
+    $text   = trim($_POST['text'] ?? '');
+
+    if (!$customize) {
+        // Create customize_product entry
+        $stmt = $db->prepare("
+            INSERT INTO customize_products (product_id, color, size, text, status)
+            VALUES (?, ?, ?, ?, 'pending')
+        ");
+        $stmt->execute([$product_id, $color, $size, $text]);
+        $customize_product_id = (int)$db->lastInsertId();
+    } else {
+        $customize_product_id = (int)$customize['id'];
+        $stmt = $db->prepare("
+            UPDATE customize_products SET color = ?, size = ?, text = ?, status = 'pending' WHERE id = ?
+        ");
+        $stmt->execute([$color, $size, $text, $customize_product_id]);
+    }
+
+    // Redirect to order placement
+    header("Location: /pages/orders/costumize-product.php?customize_product_id=$customize_product_id");
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تخصيص المنتج</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+<?php include __DIR__ . '/../partials/header.php'; ?>
+
+<main class="container narrow">
+    <h1>تخصيص المنتج</h1>
+
+    <!-- Product Summary -->
+    <div class="product-summary">
+        <?php if ($product['image_product']): ?>
+            <img src="<?= htmlspecialchars($product['image_product']) ?>" alt="">
+        <?php endif; ?>
+        <div>
+            <h3><?= htmlspecialchars($product['product_name']) ?></h3>
+            <p class="price"><?= number_format($product['price'], 2) ?> دج</p>
+        </div>
+    </div>
+
+    <?php if ($error): ?><div class="alert alert-error"><?= htmlspecialchars($error) ?></div><?php endif; ?>
+
+    <form method="POST" class="form-card">
+        <div class="form-group">
+            <label>اللون المطلوب</label>
+            <input type="text" name="color" placeholder="مثال: أحمر، أزرق، بيج..."
+                   value="<?= htmlspecialchars($customize['color'] ?? '') ?>">
+        </div>
+
+        <div class="form-group">
+            <label>الحجم</label>
+            <input type="text" name="size" placeholder="مثال: صغير، وسط، كبير، 40cm..."
+                   value="<?= htmlspecialchars($customize['size'] ?? '') ?>">
+        </div>
+
+        <div class="form-group">
+            <label>نص أو رسالة (إن وجدت)</label>
+            <textarea name="text" rows="3" placeholder="نص تريد كتابته على المنتج..."><?= htmlspecialchars($customize['text'] ?? '') ?></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">متابعة الطلب ←</button>
+            <a href="/pages/products.php" class="btn btn-secondary">إلغاء</a>
+        </div>
+    </form>
+</main>
+
+<?php include __DIR__ . '/../partials/footer.php'; ?>
+</body>
+</html>
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
