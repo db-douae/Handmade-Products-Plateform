@@ -1,22 +1,96 @@
+<?php
+session_start();
+require_once __DIR__ . '/../app/config/database.php';
+
+$db = getDB();
+
+// Fetch all artisans with shop info
+$stmt = $db->query("
+    SELECT a.id, a.description, a.created_at,
+           u.first_name, u.last_name, u.email, u.interests,
+           s.id as shop_id, s.shop_name, s.category_name,
+           COUNT(p.id) as product_count
+    FROM artisans a
+    JOIN users u ON a.user_id = u.id
+    LEFT JOIN artisan_shops s ON s.artisan_id = a.id
+    LEFT JOIN products p ON p.artisan_id = a.id
+    GROUP BY a.id
+    ORDER BY a.created_at DESC
+");
+$artisans = $stmt->fetchAll();
+?>
 <!DOCTYPE html>
-<!--htmmml-->
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>الحرفيون</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+<?php include __DIR__ . '/partials/header.php'; ?>
+
+<main class="container">
+    <h1>لحرفيون</h1>
+
+    <div class="artisans-grid">
+        <?php if (empty($artisans)): ?>
+            <p class="no-results">لا يوجد حرفيون مسجلون حالياً.</p>
+        <?php else: ?>
+            <?php foreach ($artisans as $artisan): ?>
+                <div class="artisan-card">
+                    <div class="artisan-avatar">
+                        <?= strtoupper(substr($artisan['first_name'], 0, 1)) ?>
+                    </div>
+                    <div class="artisan-info">
+                        <h3><?= htmlspecialchars($artisan['first_name'] . ' ' . $artisan['last_name']) ?></h3>
+
+                        <?php if ($artisan['shop_name']): ?>
+                            <p class="shop-badge"><?= htmlspecialchars($artisan['shop_name']) ?></p>
+                            <p class="category"><?= htmlspecialchars($artisan['category_name']) ?></p>
+                        <?php endif; ?>
+
+                        <?php if ($artisan['description']): ?>
+                            <p class="description"><?= htmlspecialchars($artisan['description']) ?></p>
+                        <?php endif; ?>
+
+                        <p class="product-count"><?= $artisan['product_count'] ?> منتج</p>
+
+                        <?php if ($artisan['shop_id']): ?>
+                            <a href="/pages/shop/artisan-shop.php?id=<?= $artisan['shop_id'] ?>" class="btn btn-primary">
+                              visit store
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+</main>
+
+<?php include __DIR__ . '/partials/footer.php'; ?>
+</body>
+</html>
+
+<!DOCTYPE html>
 <html>
     <head>
         <title>Artisans</title>
         <meta name="viewoport" content="width=device-width,initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/Handmade-Products-Plateform/project/public/assets/css/artisans.css">
+        <link rel="stylesheet" type="text/css" href="/project/public/assets/css/artisans.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css">
     </head>
     <body>
-
+      <header>
+        <?php include '../layouts/header.php'; ?>
+    </header>
         <section class="after-header">
         <select>
-           <option>New to old</option>
-           <option>By Interests</option>
+           <option>choice 1</option>
+            <option><a href="login.html">choice 2</a></option>
         </select>
        <div class="search-container">
             <input type="text" placeholder="search...">
-            <img src="/Handmade-Products-Plateform/project/public/assets/images/search-icon.png" class="search-icon">
+            <img src="search-icon.png" class="search-icon">
         </div>
     </section>
     
@@ -89,7 +163,7 @@
 });
 </script>
 <footer>
-
+        <?php include '../layouts/footer.php'; ?>
     </footer>
 
     </html>
