@@ -41,7 +41,7 @@ A web-based marketplace platform connecting buyers with local artisans, built as
 5. Start Apache and navigate to `http://localhost/Handmade-Products-Platform/project`
 
 ## Project Structure
-
+```
 └── Handmade-Products-Plateform
     └── project
         ├── app
@@ -113,7 +113,8 @@ A web-based marketplace platform connecting buyers with local artisans, built as
             │   │   ├── icons
             │   └── js
             └── uploads
-            
+```
+
 ## Authors
 
 - **Benchidi Douae** — [GitHub](https://github.com/db-douae)
