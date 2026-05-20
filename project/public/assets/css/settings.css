@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{
+    margin: 0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    background: #f5f2ee;
+    justify-content: left;
+
+    
+}
+.all{
+    width: 95%;
+    text-align: left;
+    padding: 30px;
+    margin: 10px auto;
+}
+input {
+  color: rgb(117, 117, 117);
+}
+.avatar {
+    padding: 30px;
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius:10px;
+    text-align: left;
+}
+.personal, .change-password{
+     padding: 30px;
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius:10px;
+    text-align: left;
+}
+.upgrade{
+    padding: 30px;
+    margin: 10px auto;
+    background-color: transparent;
+    border-radius:10px;
+    text-align: left;
+    display: flex ;
+    gap: 100px;
+}
+.message {
+    .upgrade{
+    padding: 30px;
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius:10px;
+    text-align: left;
+    display: flex ;
+    gap: 100px;
+}
+}
+.upgrade button{
+    background: #fff;
+    border: 1px solid #876b5d;
+    color: #876b5d;
+    padding: 0px 20px;
+}
+.delete{
+     padding: 30px;
+    margin: 10px auto;
+    background: #FFE7E5;
+    border-radius:10px;
+    text-align: left;
+}
+label{
+    color: #2F1F1B;
+}
+h2{
+    color: #2F1F1B;
+}
+p{
+    color: #2F1F1B;
+}
+.delete button{
+    background: transparent;
+    border: 3px solid #FF422D;
+    border-radius: 5px;
+    padding: 10px;
+    color: #FF422D;
+}
+.delete button:hover{
+    background: #FF422D ;
+    color: #fff;
+}
+
+.name-row{
+      display: flex;
+  gap: 16px;
+  padding: 10px;
+  font-size: 1rem;
+}
+.form-group input{
+width: 100%;
+margin: 5px;
+font-size: 1rem;
+
+}
+.email-input{
+    font-size: 1rem;
+    padding: 10px;
+}
+.email-input input{
+    font-size: 1rem;
+    width: 100%;
+}
+.password{
+    font-size: 1rem;
+    padding: 10px;
+}
+.password input{
+    font-size: 1rem;
+    width: 100%;
+    border:2px sloid #eee;
+    background: transparent;
+}
+.btn-browse{
+    border: 1px solid #2F1F1B;
+    padding: 0 5px;
+}
+.avatar .pfp{
+    width: 100px; 
+  height: 100px;
+border-radius: 50%;
+border:1px solid #2F1F1B;
+    background: #f5f2ee;
+}
+
+.update button{
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    padding:5px 0;
+    border-radius: 5px;
+    border: 2px solid #2F1F1B;
+    width: 15%;
+    cursor:pointer;
+    background: #f5f2ee;
+}
+.update button:hover{
+    background: #876b5d ;
+    color: #f5f2ee;
+}
+
+
+
