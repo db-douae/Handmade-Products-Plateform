@@ -117,8 +117,8 @@ A web-based marketplace platform connecting buyers with local artisans, built as
 
 ## Authors
 
-- **Benchidi Douae** — [GitHub](https://github.com/db-douae)
-- **Battou Nedjet** — [GitHub](https://github.com/nadjetbattou-eng)
+- **Benchidi Douaa** — [GitHub](https://github.com/db-douae)
+- **Battou Nadjet** — [GitHub](https://github.com/nadjetbattou-eng)
 
 >  Graduation Project — 2025/2026 
 >  Université Yahia Fares Médéa — L3 SI
