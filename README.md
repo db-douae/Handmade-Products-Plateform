@@ -1,3 +1,6 @@
+
+<img width="1920" height="2625" alt="Screenshot 2026-06-04 at 19-55-37 Craftmen" src="https://github.com/user-attachments/assets/8bedda6c-2c8c-4f12-b4f2-e6d1a026bc20" />
+
 # Handmade Products Marketplace
 
 A web-based marketplace platform connecting buyers with local artisans, built as a graduation project for the Department of Computer Science, Université Yahia Fares Médéa.
