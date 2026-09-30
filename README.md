@@ -1,12 +1,12 @@
 ### [1]
 <img width="1920" height="2625" alt="Screenshot 2026-06-04 at 19-55-37 Craftmen" src="https://github.com/user-attachments/assets/8bedda6c-2c8c-4f12-b4f2-e6d1a026bc20" />
+
 ### [2]
 <img width="1920" height="2140" alt="Screenshot 2026-06-04 at 19-58-34 Settings" src="https://github.com/user-attachments/assets/a6c5bf88-26e2-4203-a6a5-9c1d42931fbd" />
+
 ### [3]
 <img width="1920" height="2246" alt="Screenshot 2026-06-04 at 19-58-43 My Shop" src="https://github.com/user-attachments/assets/c1c1ef97-39be-4e9b-a6f8-984176e7c1db" />
-### [1]
 
-### [1]
 # Handmade Products Marketplace
 
 A web-based marketplace platform connecting buyers with local artisans, built as a graduation project for the Department of Computer Science, Université Yahia Fares Médéa.
